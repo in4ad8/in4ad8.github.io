@@ -1,0 +1,264 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>ImapWPG</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="js/jquery.mobile.min.css" />
+	<link rel="stylesheet" href="css/base.css" />
+	<link rel="stylesheet" href="css/hnd.css" />
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mobile.min.js"></script>
+	<script type="text/javascript" src="js/hndjsse.js"></script>
+	<script type="text/javascript">
+		window.bSearchDataLoaded = false;
+		
+		$(document).ready(function()
+		{
+			// Load search data
+			(function() {
+				var se = document.createElement('script'); se.type = 'text/javascript'; se.async = true;
+				se.src = 'js/hndsd.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(se, s);
+			})();
+		});
+
+		function ShowKwPopup(oSender, aLinks)
+		{
+			return true;
+		}
+		
+		function PerformSearch()
+		{
+			if (!window.bSearchDataLoaded) {
+				$("#search_results").html("Search engine data hasn't been fully loaded yet or an error occurred while loading it. This usually happens when documentation is browsed locally.");
+				return;
+			}
+			sValue = $("#search_input").val();
+			$("#search_results").html('Searching...');
+			$("#search_results").listview('refresh');
+			var oSearchEngine = new HndJsSe;
+			oSearchEngine.ParseInput(sValue);			
+			oSearchEngine.PerformSearch();
+			if (!oSearchEngine.aResults || !oSearchEngine.aResults.length)
+			{
+				$("#search_results").html('<li>No results found.</li>');
+			}
+			else
+			{
+				$("#search_results").html('');
+				var oUl = $("#search_results");
+				for (var nCnt = 0; nCnt < oSearchEngine.aResults.length; nCnt++)
+				{
+					if (oSearchEngine.aResults[nCnt][0] < aTl.length)
+					{
+						oUl.append("<li><a href='" + aTl[oSearchEngine.aResults[nCnt][0]][0] + "?search=" + escape(sValue) + "'>" + unescape(aTl[oSearchEngine.aResults[nCnt][0]][1]) + "</a></li>");
+					}
+				}
+			}
+			$("#search_results").listview('refresh');
+			return false;
+		}
+	
+	</script>
+</head>
+
+<body>
+
+	<div data-role="page" id="toc"> 
+	
+		<div data-role="header" data-id="header" data-position="fixed">
+			<h1>ImapWPG</h1>
+
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#toc" class="ui-btn-active">Table of contents</a></li>
+					<li><a href="#index">Index</a></li>
+					<li><a href="#search">Search</a></li>
+				</ul>
+			</div>
+		</div> 
+		
+		<div data-role="content">
+			<ul data-role="listview">
+			
+				<li class="level1">
+						<a href="Introduction.html">
+							Introduction</a>
+					</li>
+				
+				<li class="level2">
+						<a href="About.html">
+							About</a>
+					</li>
+				
+				<li class="level2">
+						<a href="Whatsnew.html">
+							What's new</a>
+					</li>
+				
+				<li class="level2">
+						<a href="Disclaimer.html">
+							Disclaimer</a>
+					</li>
+				
+				<li class="level1">
+						<a href="GettingStarted.html">
+							Getting Started</a>
+					</li>
+				
+				<li class="level2">
+						<a href="Systemrequirements.html">
+							System requirements</a>
+					</li>
+				
+				<li class="level2">
+						<a href="Quickstart.html">
+							Quick start</a>
+					</li>
+				
+				<li class="level1">
+						<a href="ApplicationLayout.html">
+							Application Layout</a>
+					</li>
+				
+				<li class="level2">
+						<a href="ActionBar.html">
+							Action Bar</a>
+					</li>
+				
+				<li class="level2">
+						<a href="MainMap.html">
+							Main Map</a>
+					</li>
+				
+				<li class="level2">
+						<a href="FeatureDrawer.html">
+							Feature Drawer</a>
+					</li>
+				
+				<li class="level1">
+						<a href="Features.html">
+							Features</a>
+					</li>
+				
+				<li class="level2">
+						<a href="Selectingfeatures.html">
+							Selecting features</a>
+					</li>
+				
+				<li class="level2">
+						<a href="Deselectingfeatures.html">
+							Deselecting features</a>
+					</li>
+				
+				<li class="level2">
+						<a href="SocialMediafeatures.html">
+							Social Media features</a>
+					</li>
+				
+				<li class="level1">
+						<a href="Infowindow.html">
+							Info window</a>
+					</li>
+				
+				<li class="level2">
+						<a href="Standard.html">
+							Standard </a>
+					</li>
+				
+				<li class="level2">
+						<a href="Multipledatalayer.html">
+							Multiple data layer </a>
+					</li>
+				
+				<li class="level2">
+						<a href="Transit.html">
+							Transit</a>
+					</li>
+				
+				<li class="level2">
+						<a href="Twitter.html">
+							Twitter</a>
+					</li>
+				
+				<li class="level2">
+						<a href="Instagram.html">
+							Instagram</a>
+					</li>
+				
+				<li class="level1">
+						<a href="Troubleshooting.html">
+							Trouble shooting</a>
+					</li>
+				
+				</ul>
+		</div> 
+		
+		<div data-role="footer">
+			<h4></h4>
+		</div> 
+		
+	</div><!-- /toc -->
+	
+	<div data-role="page" data-id="header" data-position="fixed" id="index"> 
+	
+		<div data-role="header">
+			<h1>ImapWPG</h1>
+
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#toc">Table of contents</a></li>
+					<li><a href="#index" class="ui-btn-active">Index</a></li>
+					<li><a href="#search">Search</a></li>
+				</ul>
+			</div>
+		</div> 
+		
+		<div data-role="content">
+
+			<ul data-role="listview">
+			
+				</ul>
+		
+		</div> 
+		
+		<div data-role="footer">
+			<h4></h4>
+		</div> 
+		
+	</div><!-- /index -->
+	
+	<div data-role="page" data-id="header" data-position="fixed" id="search"> 
+	
+		<div data-role="header">
+			<h1>ImapWPG</h1>
+
+			<div data-role="navbar">
+				<ul>
+					<li><a href="#toc">Table of contents</a></li>
+					<li><a href="#index">Index</a></li>
+					<li><a href="#search" class="ui-btn-active">Search</a></li>
+				</ul>
+			</div>
+		</div> 
+		
+		<div data-role="content">
+			<form action="" method="post" onsubmit="return PerformSearch();" data-ajax="false">
+				<input type="search" name="search_input" id="search_input" value="" />
+			</form>
+			
+			<h2>Search results</h2>
+			
+			<ul data-role="listview" id="search_results">
+				<li>No search performed.</li>
+			</ul>
+		</div> 
+		
+		<div data-role="footer">
+			<h4></h4>
+		</div> 
+
+</body>
+
+</html>
+
