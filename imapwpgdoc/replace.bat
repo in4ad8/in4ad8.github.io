@@ -1,1 +1,0 @@
-powershell -executionpolicy bypass -file replaceps.ps1
